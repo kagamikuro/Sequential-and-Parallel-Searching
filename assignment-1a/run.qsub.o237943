@@ -1,0 +1,18 @@
+Sat Oct  6 21:56:39 BST 2018
+Read test number 0
+Text length = 42
+Pattern length = 10
+Pattern found at position 11
+# comparisons = 24
+Test 0 elapsed wall clock time = 0
+Test 0 elapsed CPU time = 0.000000
+
+Read test number 1
+Text length = 1000
+Pattern length = 10
+Pattern not found
+# comparisons = 1027
+Test 1 elapsed wall clock time = 0
+Test 1 elapsed CPU time = 0.000000
+
+Sat Oct  6 21:56:39 BST 2018
