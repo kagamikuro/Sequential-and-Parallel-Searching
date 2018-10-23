@@ -91,7 +91,7 @@ int readData (int testNumber)
 
 
 
-int hostMatch(long *comparisons)
+int hostMatch(long *comparisons,int threads)
 {
 	int i,j,k, lastI;
 	
@@ -100,42 +100,42 @@ int hostMatch(long *comparisons)
 	k=0;
 	lastI = textLength-patternLength;
         *comparisons=0;
-	int temp_comparisons;
+	int temp_comparisons=0;
 	int position = -1;
-	#pragma omp parallel num_threads(6) private(k,j) shared(i,temp_comparisons) 
-	{
-		for(i=0;i<=lastI;){
-			#pragma omp critical(foo)
-			{
-				i++;
-			}
-			#pragma omp critical(foo)
-			{
-				k=i;
-			}
+	#pragma omp parallel for num_threads(threads) private(k,j) shared(i,temp_comparisons) reduction(+:temp_comparisons) 	
+		for(i=0;i<=lastI;i++){
+			
+			
+			k=i;			
 			j=0;
 			if(textData[k] != patternData[j]){
 				temp_comparisons++;
 				continue;
 			}
 				
-			while(j<patternLength){
+			while(j<patternLength &&k<textLength ){
 				if(textData[k] == patternData[j]){
 					k++;
 					j++;
 					temp_comparisons++;
 				}
-				else
-					break;
+				if(k<textLength && j<patternLength && textData[k] != patternData[j])//for next comparison if text and pattern doesn't much the loop quit but comparison need add 1
+					temp_comparisons++;
+				
 			}
 			if(j == patternLength){
 				position = i;
-				break;
-			}							
+				
+			}
+			
+
+			                        
+			
+							
 			
 		}
 
-	}
+	
 	/*
 	while (i<=lastI && j<patternLength)
 	{
@@ -161,7 +161,7 @@ int hostMatch(long *comparisons)
 	*comparisons = temp_comparisons;		
 	return position;
 }
-void processData()
+void processData(int threads)
 {
 	unsigned int result;
         long comparisons;
@@ -169,7 +169,7 @@ void processData()
 	printf ("Text length = %d\n", textLength);
 	printf ("Pattern length = %d\n", patternLength);
 
-	result = hostMatch(&comparisons);
+	result = hostMatch(&comparisons,threads);
 	if (result == -1)
 		printf ("Pattern not found\n");
 	else
@@ -180,18 +180,18 @@ void processData()
 
 int main(int argc, char **argv)
 {
-	int testNumber;
+	
+	int threads;
 
-
-	testNumber = 0;
-	while (readData (testNumber))
-	{
+	
+	readData (0);
+	for(threads=16;threads<=64;threads=threads*2){
+		printf("using %d threads:\n",threads);	
 		c0 = clock(); t0 = time(NULL);	
-   	 	processData();
+   		processData(threads);
 		c1 = clock(); t1 = time(NULL);
-                printf("Test %d elapsed wall clock time = %ld\n", testNumber, (long) (t1 - t0));
-                printf("Test %d elapsed CPU time = %f\n\n", testNumber, (float) (c1 - c0)/CLOCKS_PER_SEC); 
-		testNumber++;
+        	printf("using %d threads: on test0 elapsed wall clock time = %ld\n", threads, (long) (t1 - t0));
+        	printf("using %d threads: elapsed CPU time = %f\n\n", threads, (float) (c1 - c0)/CLOCKS_PER_SEC); 
 	}
 
 
