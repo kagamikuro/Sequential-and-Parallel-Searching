@@ -127,7 +127,7 @@ void processData()
 
 	printf ("Text length = %d\n", textLength);
 	printf ("Pattern length = %d\n", patternLength);
-
+	
 	result = hostMatch(&comparisons);
 	if (result == -1)
 		printf ("Pattern not found\n");
@@ -136,6 +136,13 @@ void processData()
         printf ("# comparisons = %ld\n", comparisons);
 
 }
+/*
+inline int GetCycleCount() 
+{ 
+	__asm _emit 0x0F ;
+	__asm _emit 0x31 ;
+} 
+*/
 
 int main(int argc, char **argv)
 {
@@ -145,10 +152,17 @@ int main(int argc, char **argv)
 	testNumber = 0;
 	while (readData (testNumber))
 	{
-		c0 = clock(); t0 = time(NULL);	
+		struct timeval tvBegin, tvEnd;
+		c0 = clock(); t0 = time(NULL);
+		gettimeofday(&tvBegin, NULL);				
    	 	processData();
 		c1 = clock(); t1 = time(NULL);
-                printf("Test %d elapsed wall clock time = %ld\n", testNumber, (long) (t1 - t0));
+		gettimeofday(&tvEnd, NULL);
+		
+
+		double dDuration = (tvEnd.tv_sec - tvBegin.tv_sec) + ((tvEnd.tv_usec - tvBegin.tv_usec) / 1000.0)/1000;
+
+                printf("Test %d elapsed wall clock time = %lf\n", testNumber, dDuration);
                 printf("Test %d elapsed CPU time = %f\n\n", testNumber, (float) (c1 - c0)/CLOCKS_PER_SEC); 
 		testNumber++;
 	}
