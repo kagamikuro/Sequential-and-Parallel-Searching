@@ -167,7 +167,6 @@ void processData(int threads)
         long comparisons;
 
 	printf ("Text length = %d\n", textLength);
-
 	printf ("Pattern length = %d\n", patternLength);
 
 	result = hostMatch(&comparisons,threads);
@@ -185,7 +184,7 @@ int main(int argc, char **argv)
 	int threads;
 
 	
-	readData (0);
+	readData (1);
 	for(threads=1;threads<=64;threads=threads*2){
 		printf("using %d threads:\n",threads);	
 		c0 = clock(); t0 = time(NULL);	
