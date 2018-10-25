@@ -102,8 +102,10 @@ int hostMatch(long *comparisons,int threads)
         *comparisons=0;
 	long temp_comparisons=0;
 	int position = -1;
-	#pragma omp parallel for num_threads(threads) private(k,j) shared(i,temp_comparisons) 	
+	#pragma omp parallel for num_threads(threads) private(k,j) shared(i,temp_comparisons)  	
 		for(i=0;i<=lastI;i++){
+			if(position != -1)// pattern has been found
+				continue;
 			
 			
 			k=i;			

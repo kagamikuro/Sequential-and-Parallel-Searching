@@ -125,15 +125,15 @@ void processData()
 	unsigned int result;
         long comparisons;
 
-	printf ("Text length = %d\n", textLength);
-	printf ("Pattern length = %d\n", patternLength);
+	//printf ("Text length = %d\n", textLength);
+	//printf ("Pattern length = %d\n", patternLength);
 	
 	result = hostMatch(&comparisons);
 	if (result == -1)
 		printf ("Pattern not found\n");
-	else
-		printf ("Pattern found at position %d\n", result);
-        printf ("# comparisons = %ld\n", comparisons);
+	//else
+		//printf ("Pattern found at position %d\n", result);
+        //printf ("# comparisons = %ld\n", comparisons);
 
 }
 /*
@@ -154,16 +154,18 @@ int main(int argc, char **argv)
 	{
 		struct timeval tvBegin, tvEnd;
 		c0 = clock(); t0 = time(NULL);
-		gettimeofday(&tvBegin, NULL);				
-   	 	processData();
+		gettimeofday(&tvBegin, NULL);
+		int n=0;
+		for(n=0;n<1000;n++)				
+   	 		processData();
 		c1 = clock(); t1 = time(NULL);
 		gettimeofday(&tvEnd, NULL);
 		
 
 		double dDuration = (tvEnd.tv_sec - tvBegin.tv_sec) + ((tvEnd.tv_usec - tvBegin.tv_usec) / 1000.0)/1000;
 
-                printf("Test %d elapsed wall clock time = %lf\n", testNumber, dDuration);
-                printf("Test %d elapsed CPU time = %f\n\n", testNumber, (float) (c1 - c0)/CLOCKS_PER_SEC); 
+                printf("Test %d elapsed wall clock time = %ld\n", testNumber,(long)(t1-t0)/1000);
+                printf("Test %d elapsed CPU time = %lf\n\n", testNumber, (double) (c1 - c0)/CLOCKS_PER_SEC/1000); 
 		testNumber++;
 	}
 
