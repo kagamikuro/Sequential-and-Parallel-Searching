@@ -1,0 +1,9 @@
+
+Read test number 1
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 1001
+# comparisons = 1002000
+Test 1 elapsed wall clock time = 0
+Test 1 elapsed CPU time = 0.000000
+

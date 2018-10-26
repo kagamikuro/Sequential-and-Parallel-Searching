@@ -1,0 +1,9 @@
+[40120405@login2(kelvin) assignment-1b]$ ./searching_sequential
+
+Read test number 0
+Text length = 2000000
+Pattern length = 2000
+Pattern found at position 1998000
+# comparisons = 3996002000
+Test 0 elapsed wall clock time = 10
+Test 0 elapsed CPU time = 10.680000

@@ -102,7 +102,7 @@ int hostMatch(long *comparisons,int threads)
         *comparisons=0;
 	long temp_comparisons=0;
 	int position = -1;
-	#pragma omp parallel for num_threads(threads) private(k,j) shared(i,temp_comparisons) schedule(guided) 	
+	#pragma omp parallel for num_threads(threads) private(k,j) shared(i,temp_comparisons)  	
 		for(i=0;i<=lastI;i++){
 			
 			
@@ -134,30 +134,6 @@ int hostMatch(long *comparisons,int threads)
 							
 			
 		}
-
-	
-	/*
-	while (i<=lastI && j<patternLength)
-	{
-                (*comparisons)++;
-		if (textData[k] == patternData[j])
-		{
-			k++;
-			j++;
-		}
-		else
-		{
-			i++;
-			k=i;
-			j=0;
-		}
-	}
-	*/
-	/*
-	if (j == patternLength)
-		return i;
-	else
-	*/
 	*comparisons = temp_comparisons;		
 	return position;
 }

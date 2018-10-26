@@ -1,0 +1,57 @@
+[40120405@login2(kelvin) assignment-1b]$ ./searching_OMP_1
+Read test number 2
+using 1 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 9946249
+# comparisons = 9949051000
+using 1 threads: on test0 elapsed wall clock time = 38
+using 1 threads: elapsed CPU time = 37.509998
+
+using 2 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 9946249
+# comparisons = 5580809262
+using 2 threads: on test0 elapsed wall clock time = 30
+using 2 threads: elapsed CPU time = 58.650002
+
+using 4 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 9946249
+# comparisons = 2638527305
+using 4 threads: on test0 elapsed wall clock time = 30
+using 4 threads: elapsed CPU time = 108.190002
+
+using 8 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 9946249
+# comparisons = 1280243992
+using 8 threads: on test0 elapsed wall clock time = 31
+using 8 threads: elapsed CPU time = 179.669998
+
+using 16 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 7483656
+# comparisons = 1032968317
+using 16 threads: on test0 elapsed wall clock time = 31
+using 16 threads: elapsed CPU time = 183.830002
+
+using 32 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 8738432
+# comparisons = 792979918
+using 32 threads: on test0 elapsed wall clock time = 32
+using 32 threads: elapsed CPU time = 189.059998
+
+using 64 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 5465596
+# comparisons = 559684322
+using 64 threads: on test0 elapsed wall clock time = 30
+using 64 threads: elapsed CPU time = 178.990005

@@ -1,0 +1,9 @@
+
+using 2 threads:
+Text length = 10000000
+Pattern length = 1000
+Pattern found at position 1001
+# comparisons = 5154093467
+using 2 threads: on test0 elapsed wall clock time = 29
+using 2 threads: elapsed CPU time = 54.869999
+

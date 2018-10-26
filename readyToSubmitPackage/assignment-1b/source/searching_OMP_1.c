@@ -137,29 +137,6 @@ int hostMatch(long *comparisons,int threads)
 			
 		}
 
-	
-	/*
-	while (i<=lastI && j<patternLength)
-	{
-                (*comparisons)++;
-		if (textData[k] == patternData[j])
-		{
-			k++;
-			j++;
-		}
-		else
-		{
-			i++;
-			k=i;
-			j=0;
-		}
-	}
-	*/
-	/*
-	if (j == patternLength)
-		return i;
-	else
-	*/
 	*comparisons = temp_comparisons;		
 	return position;
 }
